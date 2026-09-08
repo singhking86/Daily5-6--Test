@@ -11,6 +11,9 @@ jobs:
           distribution: temurin
           java-version: '17'
 
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
       - run: chmod +x gradlew
       - run: gradle wrapper --gradle-version 8.7
       - run: ./gradlew assembleDebug --stacktrace
