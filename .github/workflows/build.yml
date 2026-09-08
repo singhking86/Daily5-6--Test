@@ -4,12 +4,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Download and extract source
-        run: |
-          curl -L -o source.zip "https://github.com/singhking86/Daily5-6-/archive/refs/tags/Test.zip"
-          unzip source.zip -d .
-          mv DailyCollectPro/* .
-          mv DailyCollectPro/.* . 2>/dev/null || true
+      - uses: actions/checkout@v4
 
       - uses: actions/setup-java@v4
         with:
@@ -18,7 +13,7 @@ jobs:
 
       - run: chmod +x gradlew
       - run: gradle wrapper --gradle-version 8.7
-      - run: ./gradlew assembleDebug
+      - run: ./gradlew assembleDebug --stacktrace
 
       - uses: actions/upload-artifact@v4
         with:
